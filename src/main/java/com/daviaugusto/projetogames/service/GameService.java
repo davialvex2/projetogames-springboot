@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.daviaugusto.projetogames.dto.GameDTO;
+import com.daviaugusto.projetogames.dto.GameMinDTO;
 import com.daviaugusto.projetogames.entites.Game;
 import com.daviaugusto.projetogames.repositories.GameRepository;
 
@@ -16,10 +17,16 @@ public class GameService {
 	private GameRepository gameRepository;
 	
 
-	public List<GameDTO> findAll(){
+	public List<GameMinDTO> findAll(){
 		List<Game> lista = gameRepository.findAll();
-		List<GameDTO> dto = lista.stream().map(x -> new GameDTO(x)).toList();
+		List<GameMinDTO> dto = lista.stream().map(x -> new GameMinDTO(x)).toList();
 		return dto;
+	}
+	
+	public GameDTO findById(Long id) {
+		Game obj = gameRepository.findById(id).get();
+		GameDTO gdto = new GameDTO(obj);
+		return gdto;
 	}
 
 }

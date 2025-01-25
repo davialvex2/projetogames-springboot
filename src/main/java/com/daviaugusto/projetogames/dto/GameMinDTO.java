@@ -1,6 +1,7 @@
 package com.daviaugusto.projetogames.dto;
 
 import com.daviaugusto.projetogames.entites.Game;
+import com.daviaugusto.projetogames.projections.GameMinProjection;
 
 
 public class GameMinDTO {
@@ -15,12 +16,20 @@ public class GameMinDTO {
 	}
 
 	public GameMinDTO(Game obj) {
-		super();
 		id = obj.getId();
 		titulo = obj.getTitulo();
 		ano = obj.getAno();
 		imgUrl = obj.getImgUrl();
 		descricaoCurta = obj.getDescricaoCurta();
+	}
+	
+	public GameMinDTO(GameMinProjection obj) {
+		id = obj.getId();
+		titulo = obj.getTitulo();
+		ano = obj.getAno();
+		imgUrl = obj.getImgUrl();
+		descricaoCurta = obj.getDescricaoCurta();
+				
 	}
 
 	public Long getId() {

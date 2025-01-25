@@ -5,13 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.daviaugusto.projetogames.dto.GameDTO;
 import com.daviaugusto.projetogames.dto.GameListDTO;
-import com.daviaugusto.projetogames.dto.GameMinDTO;
-import com.daviaugusto.projetogames.entites.Game;
 import com.daviaugusto.projetogames.entites.GameList;
 import com.daviaugusto.projetogames.repositories.GameListRepository;
-import com.daviaugusto.projetogames.repositories.GameRepository;
 
 @Service
 public class GameListService {

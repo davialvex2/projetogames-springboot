@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.daviaugusto.projetogames.dto.GameDTO;
 import com.daviaugusto.projetogames.dto.GameListDTO;
 import com.daviaugusto.projetogames.dto.GameMinDTO;
 import com.daviaugusto.projetogames.service.GameListService;
@@ -22,12 +21,20 @@ public class GameListResource {
 	@Autowired
 	private GameListService gameListService;
 	
+	@Autowired
+	private GameService gameService;
+	
 	@GetMapping
 	public ResponseEntity<List<GameListDTO>> findAll(){
 		List<GameListDTO> lista = gameListService.findAll();
 		return ResponseEntity.ok().body(lista);
 	}
 	
+	@GetMapping(value = "/{id}/games")
+	public ResponseEntity<List<GameMinDTO>> findGameList(@PathVariable Long id){
+		List<GameMinDTO> lista = gameService.findGameList(id);
+		return ResponseEntity.ok().body(lista);
+	}
 
 
 }

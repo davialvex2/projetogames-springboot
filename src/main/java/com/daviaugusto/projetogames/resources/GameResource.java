@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.daviaugusto.projetogames.dto.GameDTO;
 import com.daviaugusto.projetogames.dto.GameMinDTO;
+import com.daviaugusto.projetogames.entites.Game;
 import com.daviaugusto.projetogames.service.GameService;
 
 @RestController
@@ -28,8 +29,9 @@ public class GameResource {
 	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<GameDTO> findById(@PathVariable Long id){
-		GameDTO dto = gameService.findById(id);
-		return ResponseEntity.ok().body(dto);
+		Game dto = gameService.findById(id);
+		GameDTO game = new GameDTO(dto);
+		return ResponseEntity.ok().body(game);
 	}
 	
 

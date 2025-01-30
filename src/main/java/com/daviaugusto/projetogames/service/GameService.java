@@ -1,13 +1,15 @@
 package com.daviaugusto.projetogames.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.daviaugusto.projetogames.dto.GameDTO;
+
 import com.daviaugusto.projetogames.dto.GameMinDTO;
 import com.daviaugusto.projetogames.entites.Game;
+import com.daviaugusto.projetogames.exceptions.ObjectNotFoundException;
 import com.daviaugusto.projetogames.projections.GameMinProjection;
 import com.daviaugusto.projetogames.repositories.GameRepository;
 
@@ -24,10 +26,9 @@ public class GameService {
 		return dto;
 	}
 	
-	public GameDTO findById(Long id) {
-		Game obj = gameRepository.findById(id).get();
-		GameDTO gdto = new GameDTO(obj);
-		return gdto;
+	public Game findById(Long id) {
+		Optional<Game> obj = gameRepository.findById(id);
+		return obj.orElseThrow(()-> new ObjectNotFoundException(id));
 	}
 	
 	public List<GameMinDTO> findGameList(Long id){
